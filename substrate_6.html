@@ -1,0 +1,479 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>交易体 - Substrate Guide</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="index.html">README</a></li><li class="chapter-item expanded "><a href="substrate_1.html"><strong aria-hidden="true">1.</strong> 环境配置与编译</a></li><li class="chapter-item expanded "><a href="substrate_2.html"><strong aria-hidden="true">2.</strong> 运行与调试</a></li><li class="chapter-item expanded "><a href="substrate_3.html"><strong aria-hidden="true">3.</strong> 具备状态的链</a></li><li class="chapter-item expanded "><a href="substrate_4.html"><strong aria-hidden="true">4.</strong> 项目结构</a></li><li class="chapter-item expanded "><a href="substrate_5.html"><strong aria-hidden="true">5.</strong> 区块头</a></li><li class="chapter-item expanded "><a href="substrate_6.html" class="active"><strong aria-hidden="true">6.</strong> 交易体</a></li><li class="chapter-item expanded "><a href="substrate_7.html"><strong aria-hidden="true">7.</strong> Substrate的模型设计</a></li><li class="chapter-item expanded "><a href="substrate_8.html"><strong aria-hidden="true">8.</strong> Runtime概要</a></li><li class="chapter-item expanded "><a href="substrate_9.html"><strong aria-hidden="true">9.</strong> Runtime的wasm与native</a></li><li class="chapter-item expanded "><a href="substrate_10.html"><strong aria-hidden="true">10.</strong> Runtime的构成</a></li><li class="chapter-item expanded "><a href="substrate_11.html"><strong aria-hidden="true">11.</strong> 学习Runtime必备的技能</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Substrate Guide</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="substrate-入门---交易体--六"><a class="header" href="#substrate-入门---交易体--六">Substrate 入门 - 交易体 -（六）</a></h1>
+<p>上一篇文章讲解了区块的构成之一--区块头，本章介绍Substrate中构成区块体的部分，交易。</p>
+<p>在Substrate中的交易不再称为<strong>Transaction</strong>，而是称为了<strong>Extrinsic</strong>，中文翻译就是“<strong>外部的；外表的；外源性</strong>”，意味着被称为Extrinsic的概念，对于区块链而言是外部的<strong>输入</strong>（关于这种模型描述笔者在一些分享中讲过，但是没写成文章，之后有空贴一些ppt）。这种定义脱离了本身“交易”的范畴（更像是转账的概念），而是在链的状态的角度下，认为交易及类似概念是一种改变状态的外部输入（意味着不止转账，只要是外部的操作都是）。</p>
+<p>不过为了兼容区块链原生的概念，本文及之后的文章还是把Extrinsic称为交易，或者“输入”。</p>
+<h2 id="定义"><a class="header" href="#定义">定义</a></h2>
+<p>与Header不同，在Substrate中Extrinsic实际上具备极大的灵活性，能够允许开发者做出各种灵活的定制。</p>
+<p>不过至少来说，一个“外部输入”至少会具备以下两个条件：</p>
+<ul>
+<li>发送者的证明</li>
+<li>外部输入的行为</li>
+</ul>
+<p>其中第一点是显然的，只要基于公私钥体系，就一定需要发送者对这个发送的内容进行签名，在链上通过这个签名验证合法性，解析出发送者的公钥<strong>识别身份</strong>。等价于互联网中客户端持有的token这类的。而第二点就是这个“输入”是到链上干嘛的，其相当于是用户发送到链上的<strong>指令行为</strong>。</p>
+<p>这两点对应到Substrate的交易模板上即为 <code>primitives/runtime/src/generic/unchecked_extrinsic.rs:L32</code>：</p>
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>/// A extrinsic right from the external world. This is unchecked and so
+/// can contain a signature.
+#[derive(PartialEq, Eq, Clone)]
+pub struct UncheckedExtrinsic&lt;Address, Call, Signature, Extra&gt;
+where
+	Extra: SignedExtension
+{
+	/// The signature, address, number of extrinsics have come before from
+	/// the same signer and an era describing the longevity of this transaction,
+	/// if this is a signed extrinsic.
+	pub signature: Option&lt;(Address, Signature, Extra)&gt;,  // 对应第一点
+	/// The function that should be called.
+	pub function: Call,  // 对应第二点
+}
+<span class="boring">}
+</span></code></pre></pre>
+<p>其中显然：</p>
+<ul>
+<li>signature: 就是发送者的身份标示与验证的信息</li>
+<li>function: 就是发送者的意图指令，<strong>类型为<code>Call</code></strong>，用于调用链上的相应功能，例如转账<code>transfer</code>。这块即是一条<strong>链对外提供的功能</strong>，也是一条链的Runtime的入口组成部分。一个区块打包了所有的交易，执行区块的过程即是在Runtime中执行每一条交易的<code>function</code>的指令。这部分在后续的文章中将会详细讲解。</li>
+</ul>
+<p>这个交易模板实现了trait <code>primitives/runtime/src/traits.rs:L605</code>：</p>
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>`primitives/runtime/src/traits.rs:L605`：/// Something that acts like an `Extrinsic`.
+pub trait Extrinsic: Sized {
+	type Call;
+	type SignaturePayload;
+	fn is_signed(&amp;self) -&gt; Option&lt;bool&gt; { None }
+	fn new(_call: Self::Call, _signed_data: Option&lt;Self::SignaturePayload&gt;) -&gt; Option&lt;Self&gt; { None }
+}
+/// A &quot;checkable&quot; piece of information, used by the standard Substrate Executive in order to
+/// check the validity of a piece of extrinsic information, usually by verifying the signature.
+/// Implement for pieces of information that require some additional context `Context` in order to be
+/// checked.
+pub trait Checkable&lt;Context&gt;: Sized {
+	type Checked;
+	fn check(self, c: &amp;Context) -&gt; Result&lt;Self::Checked, TransactionValidityError&gt;;
+}
+<span class="boring">}
+</span></code></pre></pre>
+<p>最终定义在Runtime中使用的交易的部分位于<code>bin/node/runtime/src/lib.rs:L566</code></p>
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>/// Unchecked extrinsic type as expected by this rundetime.
+pub type UncheckedExtrinsic = generic::UncheckedExtrinsic&lt;Address, Call, Signature, SignedExtra&gt;;
+// 其他用到 UncheckedExtrinsic 的就不写在这里了
+<span class="boring">}
+</span></code></pre></pre>
+<h2 id="分析"><a class="header" href="#分析">分析</a></h2>
+<p>实际上由于最后定义交易的部分位于node的runtime中，根据之前文章，大家应该可以清楚的意识到这里的<code>UncheckedExtrinsic</code>实现是可以任意替换的。</p>
+<p>实际上只要实现了<code>Extrinsic</code>与<code>Checkable</code>这两个trait，就可以成为Substrate的<code>Extrinsic</code>，其中：</p>
+<ul>
+<li>前者提供了交易了功能性接口</li>
+<li>后者提供了交易<strong>进入交易池前的验证</strong>接口</li>
+</ul>
+<p>这里的结构体<code>UncheckedExtrinsic</code>只是Substrate默认提供的模板，开发者完全可以替换成自己的结构体。不过绝大多数情况下都不需要罢了。</p>
+<p>这里笔者重点说一下<code>UncheckedExtrinsic</code>中的<code>signature</code>。</p>
+<p>我们可以看到<code>signature</code>由3个部分组成：</p>
+<ul>
+<li>Address  发送者的地址</li>
+<li>Signature  发送者对交易体的签名</li>
+<li>Extra  <strong>额外</strong>的验证信息</li>
+</ul>
+<p>这里很有意思的就是<code>Extra</code>这个东西。事实上这个部分可以允许开发者做很多事情，例如我们看以下在Substrate的node模板里面它做了<code>bin/node/runtime/src/lib.rs:L556</code>：</p>
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>/// The SignedExtension to the basic transaction logic.
+pub type SignedExtra = (
+	frame_system::CheckVersion&lt;Runtime&gt;,
+	frame_system::CheckGenesis&lt;Runtime&gt;,
+	frame_system::CheckEra&lt;Runtime&gt;,
+	frame_system::CheckNonce&lt;Runtime&gt;,
+	frame_system::CheckWeight&lt;Runtime&gt;,
+	pallet_transaction_payment::ChargeTransactionPayment&lt;Runtime&gt;,
+	pallet_contracts::CheckBlockGasLimit&lt;Runtime&gt;,
+);
+<span class="boring">}
+</span></code></pre></pre>
+<p>在讲解这个之前，首先要介绍一下一个Extrinsic从外部到链内部的过程：</p>
+<p><img src="imgs/s6_1.png" alt="s6_1" /></p>
+<p>我们首先要看到，Substrate并非是在执行区块的时候才开始校验交易合法性的，而是在进入交易池之前就开始校验了。同时在最后执行交易前还会再校验一遍。其过程为：</p>
+<p>首先验证交易的签名合法性，然后验证**额外信息（Extra）**的合法性验证，才进入交易池。</p>
+<p>这块验证流程位于<code>frame/executive/src/lib.rs</code>   这里请<strong>先记住<code>validate_transaction</code> 是进入交易池的验证过程</strong></p>
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>	pub fn validate_transaction(uxt: Block::Extrinsic) -&gt; TransactionValidity {
+		let encoded_len = uxt.using_encoded(|d| d.len());
+		let xt = uxt.check(&amp;Default::default())?;   // 这里的check 来自 Checkable, 从 unchecked 变为 checked
+
+		let dispatch_info = xt.get_dispatch_info();
+		xt.validate::&lt;UnsignedValidator&gt;(dispatch_info, encoded_len)  // 这里对 checked 执行了 `validate` 进行额外信息的验证，请注意`validate`来自于 `SignedExtension` 这个trait
+	}
+<span class="boring">}
+</span></code></pre></pre>
+<p>而执行交易的流程为，这里请记住 <code>apply_extrinsic_with_len</code> 为真正执行交易的过程：</p>
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>fn apply_extrinsic_with_len(
+		uxt: Block::Extrinsic,
+		encoded_len: usize,
+		to_note: Option&lt;Vec&lt;u8&gt;&gt;,
+	) -&gt; ApplyExtrinsicResult {
+		// Verify that the signature is good.
+		let xt = uxt.check(&amp;Default::default())?;  // 这里的check 来自于 Checkable，因此只执行了 check的过程（模板里即验签）
+//...
+}
+<span class="boring">}
+</span></code></pre></pre>
+<p><strong>另一方面请注意</strong></p>
+<p>由于刚才的<code>validate_transaction</code> 与<code>apply_extrinsic_with_len</code>都位于<code>frame/executive/</code>，因此实际上这个过程<em>根据前几篇文章</em>的介绍是**可以由开发者自己定义的！**因此开发者若觉得这个验证流程过于严格，或者不符合要求，完全可以修改这个验证过程。</p>
+<p>还有需要注意的是，这里说的交易签名的验证是包括<code>Extra</code>提供的信息的。签名的校验指代的是对<code>function</code>和<code>extra</code>提供的附加验证条件进行校验。见<code>UncheckedExtrinsic</code>的实现（当然不使用模板自己实现的就可以更改这个过程），因此前端的交易组织签名的过程<strong>应与这里所匹配</strong>：</p>
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>impl&lt;Address, AccountId, Call, Signature, Extra, Lookup&gt; Checkable&lt;Lookup&gt; {
+	type Checked = CheckedExtrinsic&lt;AccountId, Call, Extra&gt;;
+	fn check(self, lookup: &amp;Lookup) -&gt; Result&lt;Self::Checked, TransactionValidityError&gt; {
+		Ok(match self.signature {
+			Some((signed, signature, extra)) =&gt; {
+				let signed = lookup.lookup(signed)?;
+				let raw_payload = SignedPayload::new(self.function, extra)?;  //注意这里将会把其他附加信息添加到raw_payload 中
+				if !raw_payload.using_encoded(|payload| {
+					signature.verify(payload, &amp;signed)  // 注意这里是对签名的 verify，对应的内容是`raw_payload`，因此前段的编码应和这里匹配
+				}) {
+					return Err(InvalidTransaction::BadProof.into())
+				}
+				// ...
+			}
+			// ...
+		})
+	}
+}
+<span class="boring">}
+</span></code></pre></pre>
+<h2 id="extra"><a class="header" href="#extra">Extra</a></h2>
+<p>笔者这里通过介绍Extra的实现方式介绍Substrate常见的一种对多种相同行为的最佳实践方式：</p>
+<p>首先我们看<code>SignedPayload::new(self.function, extra)?; </code>的实现内容</p>
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>impl&lt;Call, Extra&gt; SignedPayload&lt;Call, Extra&gt; where
+	Call: Encode,
+	Extra: SignedExtension,
+{	
+	pub fn new(call: Call, extra: Extra) -&gt; Result&lt;Self, TransactionValidityError&gt; {
+		let additional_signed = extra.additional_signed()?;  // 这里我们要观察到  extra 是一个实现了 `SignedExtension` 的类型，并执行了 `additional_signed` 附加了一些其他校验的元素
+
+	}
+}
+<span class="boring">}
+</span></code></pre></pre>
+<p>而另一方面请注意，在<code>bin/node/runtime/src/lib.rs:L556</code> 与 <code>L566</code> 中：</p>
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>pub type UncheckedExtrinsic = generic::UncheckedExtrinsic&lt;Address, Call, Signature, SignedExtra&gt;;
+// 填充到交易模板的 SignedExtra 部分来自于 
+pub type SignedExtra = (
+	frame_system::CheckVersion&lt;Runtime&gt;,
+	frame_system::CheckGenesis&lt;Runtime&gt;,
+//... 
+);
+<span class="boring">}
+</span></code></pre></pre>
+<p>这里请注意，<code>SignedExtra</code> 是一个<strong>元组</strong>，并非是一个<code>SignedExtension</code>的具体实现体。</p>
+<p>而随便点入一个校验查看，如 CheckEra： <code>frame/system/src/lib.rs:L1048</code></p>
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>	fn additional_signed(&amp;self) -&gt; Result&lt;Self::AdditionalSigned, TransactionValidityError&gt; {
+		let current_u64 = &lt;Module&lt;T&gt;&gt;::block_number().saturated_into::&lt;u64&gt;();
+		let n = (self.0).0.birth(current_u64).saturated_into::&lt;T::BlockNumber&gt;();
+		if !&lt;BlockHash&lt;T&gt;&gt;::exists(n) {
+			Err(InvalidTransaction::AncientBirthBlock.into())
+		} else {
+			Ok(&lt;Module&lt;T&gt;&gt;::block_hash(n))
+		}
+	}
+<span class="boring">}
+</span></code></pre></pre>
+<blockquote>
+<p>这里直接说明<code>Era</code>的作用实际上就是用于一个交易在交易池的存活条件。例如在比特币中，一个交易的手续费若太低，就会一直堆积在交易池中不被打包。而era就是在组件交易的时候附加一个条件，表面这个交易可以在交易池中存活多少个区块，若超出了这个区块范围还没被打包的话，就会从交易池中剔除。</p>
+<p>因此比如若这里增加了这个判定条件，那么前端也要增加相应的参数，否则在刚才<code>validate_transaction</code>的过程中签名就会不匹配。</p>
+</blockquote>
+<p>我们可以看到这里的<code>additional_signed</code>已经是一个具体的实现。</p>
+<p>那么在Substrate中是怎么从“元组”的执行走到“具体实现”的执行过程呢？</p>
+<p>那么显然，Substrate实际上应该对元组实现<code>SignedExtra</code> 这个trait，而且实现内容大概就是</p>
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>impl SignedExtra for (A, B) {
+    	fn additional_signed(&amp;self) -&gt; Result&lt;Self::AdditionalSigned, TransactionValidityError&gt; {
+            let a = self.0.additional_signed()?;
+            let b = self.1.additional_signed()?;
+            Ok((a, b))  // 用某种方式把所有的 AdditionalSigned 拼起来
+       }
+}
+<span class="boring">}
+</span></code></pre></pre>
+<p>会对元组中的每一个元组顺序执行，并把结果一并返回。因此在</p>
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>pub type UncheckedExtrinsic = generic::UncheckedExtrinsic&lt;Address, Call, Signature, SignedExtra&gt;;
+// SignedExtra 这里的位置可以直接接受一个元组，否则若元组没有实现这个trait，是无法编译通过的。
+<span class="boring">}
+</span></code></pre></pre>
+<p>而这里的实现实际上就位于：<code>primitives/runtime/src/traits.rs:L787</code>：</p>
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>#[impl_for_tuples(1, 12)]
+impl&lt;AccountId, Call, Info: Clone&gt; SignedExtension for Tuple {
+    //...
+}
+<span class="boring">}
+</span></code></pre></pre>
+<p>这里Substrate已经用了过程宏的形式了，不需要深究的开发者倒是没必要搞的特别清楚。总之简单来说，通过这种形式，Substrate实现了类似：</p>
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>impl SignedExtra for (A, ) {}
+impl SignedExtra for (A, B) {}
+impl SignedExtra for (A, B, C) {}  // 支持3元组
+// .....
+impl SignedExtra for (A,  B, C ....K , L) {} // 支持12元组
+<span class="boring">}
+</span></code></pre></pre>
+<p>的这样一个过程。因此实际上能够传入<code>generic::UncheckedExtrinsic&lt;Address, Call, Signature, SignedExtra&gt;;</code>的SignedExtra的元组最大应该不能超过12个。</p>
+<p><strong>Substrate在Runtime的很多基础库的实现都采用了类似的方式</strong>，因此在定义runtime的地方<code>bin/node/runtime/src/lib.rs</code>经常可以看到这种元组传入定义的形式。</p>
+<p>另一方面由于<code>additional_signed</code>的返回值是影响交易签名的验证的，因此前端应注意，附加这些额外验证信息的时候，其顺序应该与在<code>bin/node/runtime/src/lib.rs</code><strong>中<code>SignedExtra</code>元组的顺序相同</strong></p>
+<h2 id="总结"><a class="header" href="#总结">总结</a></h2>
+<p>本文介绍了Substrate中交易的设计方式。通过分析可以看出，Substrate的交易实际上设计的具备极强的扩展性，开发者完全可以根据自己的功能需求。</p>
+<p>文中只讲解了其原理，没讲其是怎么使用的。这里简单说一下，Substrate可以用这种模型实现。</p>
+<ul>
+<li>手续费检查</li>
+<li>手续费检查</li>
+<li>交易版本与链上版本检查</li>
+<li>交易存活性检查</li>
+<li>特殊交易的额外信息检查
+<ul>
+<li>例如如果一个交易是转账transfer，可以直接检查发送者的余额是否足够，不用到区块执行阶段才判定。</li>
+</ul>
+</li>
+</ul>
+<p>因此在明白了substrate的交易设计后，可以灵活的根据需求对其进行改动。</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="substrate_5.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next" href="substrate_7.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="substrate_5.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next" href="substrate_7.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+        <!-- Livereload script (if served using the cli tool) -->
+        <script type="text/javascript">
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
+
+
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </body>
+</html>

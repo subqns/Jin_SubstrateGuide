@@ -1,0 +1,275 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>具备状态的链 - Substrate Guide</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="index.html">README</a></li><li class="chapter-item expanded "><a href="substrate_1.html"><strong aria-hidden="true">1.</strong> 环境配置与编译</a></li><li class="chapter-item expanded "><a href="substrate_2.html"><strong aria-hidden="true">2.</strong> 运行与调试</a></li><li class="chapter-item expanded "><a href="substrate_3.html" class="active"><strong aria-hidden="true">3.</strong> 具备状态的链</a></li><li class="chapter-item expanded "><a href="substrate_4.html"><strong aria-hidden="true">4.</strong> 项目结构</a></li><li class="chapter-item expanded "><a href="substrate_5.html"><strong aria-hidden="true">5.</strong> 区块头</a></li><li class="chapter-item expanded "><a href="substrate_6.html"><strong aria-hidden="true">6.</strong> 交易体</a></li><li class="chapter-item expanded "><a href="substrate_7.html"><strong aria-hidden="true">7.</strong> Substrate的模型设计</a></li><li class="chapter-item expanded "><a href="substrate_8.html"><strong aria-hidden="true">8.</strong> Runtime概要</a></li><li class="chapter-item expanded "><a href="substrate_9.html"><strong aria-hidden="true">9.</strong> Runtime的wasm与native</a></li><li class="chapter-item expanded "><a href="substrate_10.html"><strong aria-hidden="true">10.</strong> Runtime的构成</a></li><li class="chapter-item expanded "><a href="substrate_11.html"><strong aria-hidden="true">11.</strong> 学习Runtime必备的技能</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Substrate Guide</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="substrate-入门---具备状态的链--三"><a class="header" href="#substrate-入门---具备状态的链--三">Substrate 入门 - 具备状态的链 -（三）</a></h1>
+<p>本文首先介绍substrate的模型基础。在能理解了“链的状态”和“交易”关系后，在此模型下才可深入Substrate的设计当中。</p>
+<h2 id="结论"><a class="header" href="#结论">结论</a></h2>
+<p>首先先表述结论：Substrate的数据模型<strong>与以太坊一致</strong>，是<strong>基于MPT</strong>（Merkle Patricia Tree）的“全历史世界状态”模型。</p>
+<p>这里展开讲一点：</p>
+<p>当前区块链用于对业务进行建模的模型主要有两类：</p>
+<ol>
+<li>UTXO 模型，即比特币及其分支的模型</li>
+<li>状态模型，即以以太坊为代表，包含eos及其他区块链等以记录状态为主的模型</li>
+</ol>
+<p>因为当前主流描述业务的方式主要还是以<strong>状态迁移</strong>的模型去建模业务，因此状态模型的区块链能更容易支持更广泛的场景。</p>
+<p>本系列只介绍状态模型，UTXO模型请参照笔者之前关于比特币的相关文章。</p>
+<h2 id="状态区块链"><a class="header" href="#状态区块链">状态区块链</a></h2>
+<p>对于没有接触过状态区块链的开发者而言，首先请记住以下一些基础概念：</p>
+<ol>
+<li>当前状态是从genesis（即第0块，初始状态）开始，通过交易或其他方式产生了状态变更，不断累计出来的。</li>
+<li><strong>状态并不是储存块中，而是节点自身独立维护的。</strong></li>
+<li>块中记录的是“状态迁移”的方式</li>
+</ol>
+<p><img src="imgs/s3_1.png" alt="s3_1" /></p>
+<p>如上图所示即是一个链的状态变化的过程。</p>
+<p>比如在genesis的时候，状态为<code>A:1 B:2</code> 而经过块1的过程后，通过交易（tx）或其他因素，将A的状态修改成了2，因此在块1下的“世界状态”就变为了<code>A:2 B:2</code>。块2以此类推。</p>
+<p>因此实际上块中并不是记录当前的状态，而是节点自己本地维护了一个“世界状态”。这个状态就是存在本地的数据库中。而块中保存的时“状态迁移”，“状态迁移”就是交易（或其他因素），节点同步/执行了一个区块后，通过区块中含有的迁移状态的方式（即是在执行这个区块），修改自己的本地状态，从而当一个块执行完毕后，本地当前的状态即为这个块下的状态。</p>
+<p>而对于当前状态模型的链而言，一般情况下会具备如下的特性：</p>
+<ol>
+<li>最新块（最高块）下的状态即为当前的状态，在这个状态下可以<strong>获取当前所有对象的状态</strong>。</li>
+<li>块中含有对这个块下的状态的证明（即状态的统一性经过了节点间共识）</li>
+<li>可以通过任意一个历史的区块，取到在这个区块下的状态（如当前最高块已经是2，而通过1块中的相关信息可以取到<code>A:2</code>而不是最高块下的<code>A:4</code>）</li>
+</ol>
+<p>这3个条件中只有1是必须满足的，往后越达成一个条件，需要付出的代价就要更多。若能满足这3个条件，即是“全历史世界状态”。</p>
+<p>当然这里的词“全历史世界状态”是笔者自己造的，因为在以太坊的那个时代，还只有“世界状态”的概念。而实际上以太坊的“世界状态”是将每一个块的那个时刻的状态都做了“快照”，可以恢复到任意块的时候下的状态，也就是将全部的“状态变化历史”都保存下来的方式，因此笔者对这种模型命名为“全历史状态”。但是显然，这种方式将会将所有过去的历史都存下来，因此会造成数据量十分庞大。因此这种方式是状态区块链的一个极端。</p>
+<p>而牺牲第3个条件，保留状态证明与只保留最新状态是一种权衡。而第3点就不再交由链来维护，而交给第三方的附属设施维护，如中心化数据库，区块链浏览器等等。</p>
+<p>若连第2个条件也不用，则是状态模型的另一种极端，这种极端一定情况下牺牲了共识状态安全性。这种方式带来的好处是实现上比较简单。这即是eos的模型。</p>
+<h2 id="mpt-实现的世界状态"><a class="header" href="#mpt-实现的世界状态">MPT 实现的世界状态</a></h2>
+<p>由于Substrate采用了和以太坊一样的模型，因此满足上述的3个条件。在Substrate中MPT简称为<code>trie</code>。</p>
+<p>对于MPT实现的原理这里不进行详细描述。简单来说MPT的实现和<code>git</code>，IPFS中的IPLD模型等原理上都是一致的，用一句话描述就是：</p>
+<p>使用DAG的方式，只记录每次变更后的索引（hash）。</p>
+<p>如下图所示：</p>
+<p><img src="imgs/s3_2.png" alt="s3_2" /></p>
+<p>例如在上文提到的状态<code>A:1 B:2</code>，将A，B分别看做两个key，在MPT中key就是树的路径，而<code>1,2</code>是key对应的值，在MPT中就是叶子节点。因此<code>A:1 B:2</code> 变更到<code>A:2 B:2</code>的这个过程中，对应到上图相当于：</p>
+<ul>
+<li>从 root -&gt; 2 -&gt; value2 相当于记录了 <code>A:1</code>，从root-&gt;3-&gt;value3的过程相当于记录了<code>B:2</code></li>
+<li>从genesis到 block1 的过程中，A的状态发生了变化，从1变成了2</li>
+<li>在MPT 中由于A的值发生了变化，因此MPT生成了一个新的叶子节点代表A的新状态，然后<strong>从叶子节点重新生成一个新的索引路径</strong>，即图中的 <code>value2' -&gt; 2'-&gt; root'</code>的过程</li>
+<li>而在生成新路径的过程中，由于B的状态没有发生变化，因此在生成新的路径的过程中，直接索引了B的老路径（即图中的虚线）。</li>
+<li>因此如上图所示，通过新的树根<code>root'</code> 索引到的A和B的值分别是<code>A：2</code>（即新的A的状态）与<code>B：2</code>（即老的B的状态）</li>
+</ul>
+<p>如以上过程所示，每一个新的树跟记录的这个树根下状态的索引，因此每一个树跟即是每一个状态的DAG的起点，通过这个起点，可以获取到所有的状态。</p>
+<p>每个区块都会含有状态变更，而每次变更即是通过以上类似过程生成一个新的树根，这个根root在以太坊及Substrate中被称为状态根 <code>state_root</code>，<strong>放入每一个区块的区块头中</strong>，作为当前这个区块进行共识的<strong>状态证明</strong>。而通过以上方式也可以看出，只要从任意区块中取出状态根，那么就可以获取到这个状态根下那个时刻的所有状态的值。（对于相当同的key A，通过 root 索引出 value2，通过 root' 索引出 value2'）</p>
+<p>因此，MPT这种数据结构描述的世界状态，满足上述所说的3个条件。</p>
+<h2 id="另一个角度"><a class="header" href="#另一个角度">另一个角度</a></h2>
+<p>抛开以上原理不谈，我们可以<strong>将trie看成一个K-V数据库</strong>，这个数据库通过给予的Key能够获取到对应的Value。只不过这个k-v数据库通过给予一个root可以索引出在这个root的那个时刻下的对应数据。</p>
+<p>也就是说trie实现的链上状态就是一个带快照的k/v数据库。每一个块就是对当前数据库全部数据的快照，块的时间戳代表了那个时刻下的数据状态，通过块中的状态根可以获取那个时刻下的数据。</p>
+<p>而在打包执行当前区块时使用的root即是上一个区块的root，也就是打包区块时取当前最新的状态。</p>
+<p>在Substrate中对于Runtime层而言，提供的接口即是</p>
+<ul>
+<li>get(key) -&gt; value</li>
+<li>set(key, value) / remove(key)</li>
+</ul>
+<p>这样的接口对于Runtime而言，可以直接将trie树看做一个key/value数据库即可，屏蔽了所有的trie树细节。</p>
+<p>因此对于初学者而言，若目前还不是很容易搞清楚trie树的实现细节，那么就不用关心，只需要记住Substrate的读写数据模型是<strong>key/value数据库</strong>即可。</p>
+<h2 id="总结"><a class="header" href="#总结">总结</a></h2>
+<p>实际上状态模型区块链即使通过各种实现方式，能够在每个块下记录这个块当前的状态（key/value）。只不过使用mpt树实现的“全历史世界状态”是包含上文提到的3种性质的一种实现，这是一种极端，包含了证明与历史，但对应的也会带来数据的膨胀。</p>
+<p>Substrate采用的是这种MPT树实现的状态区块链模型。</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="substrate_2.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next" href="substrate_4.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="substrate_2.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next" href="substrate_4.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+        <!-- Livereload script (if served using the cli tool) -->
+        <script type="text/javascript">
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
+
+
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </body>
+</html>

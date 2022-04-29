@@ -1,0 +1,301 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>环境配置与编译 - Substrate Guide</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="index.html">README</a></li><li class="chapter-item expanded "><a href="substrate_1.html" class="active"><strong aria-hidden="true">1.</strong> 环境配置与编译</a></li><li class="chapter-item expanded "><a href="substrate_2.html"><strong aria-hidden="true">2.</strong> 运行与调试</a></li><li class="chapter-item expanded "><a href="substrate_3.html"><strong aria-hidden="true">3.</strong> 具备状态的链</a></li><li class="chapter-item expanded "><a href="substrate_4.html"><strong aria-hidden="true">4.</strong> 项目结构</a></li><li class="chapter-item expanded "><a href="substrate_5.html"><strong aria-hidden="true">5.</strong> 区块头</a></li><li class="chapter-item expanded "><a href="substrate_6.html"><strong aria-hidden="true">6.</strong> 交易体</a></li><li class="chapter-item expanded "><a href="substrate_7.html"><strong aria-hidden="true">7.</strong> Substrate的模型设计</a></li><li class="chapter-item expanded "><a href="substrate_8.html"><strong aria-hidden="true">8.</strong> Runtime概要</a></li><li class="chapter-item expanded "><a href="substrate_9.html"><strong aria-hidden="true">9.</strong> Runtime的wasm与native</a></li><li class="chapter-item expanded "><a href="substrate_10.html"><strong aria-hidden="true">10.</strong> Runtime的构成</a></li><li class="chapter-item expanded "><a href="substrate_11.html"><strong aria-hidden="true">11.</strong> 学习Runtime必备的技能</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Substrate Guide</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="substrate-入门---环境配置与编译---一"><a class="header" href="#substrate-入门---环境配置与编译---一">Substrate 入门 - 环境配置与编译-  （一）</a></h1>
+<p>substrate目前已经趋近成熟，因此可以比较系统的对Substrate进行介绍。</p>
+<p>本文首先介绍substrate的依赖与编译过程，以此管中窥豹了解substrate的概况。</p>
+<p>因笔者的开发环境是ubuntu/deepin/debain，因此后文命令皆基于这个环境下。</p>
+<h2 id="一-前言"><a class="header" href="#一-前言">一 前言</a></h2>
+<p>截止目前为止（2019年12月1日，提交<code>33476f08b3400a07fd7c69cd5bf4ad8f47f11373</code>），substrate的README已经出现比较大的改动，所有文档集中到了substrate的官方文档中 <a href="https://substrate.dev/docs/en/getting-started/">substrate.dev</a>。而本身对于环境的配置（linux/mac os）过程已经迁移到了脚本<code>https://getsubstrate.io</code>中，即该<a href="https://substrate.dev/docs/en/getting-started/installing-substrate#unix-based-operating-systems">链接</a>。在这个链接中的介绍为：</p>
+<pre><code class="language-bash">curl https://getsubstrate.io -sSf | bash -s -- --fast
+</code></pre>
+<p>但是现在的这种配置方式已经把很多细节隐藏了，且后续执行的命令<code>--fast</code>实际上把substrate下载到了一个temp目录中进行编译并安装到了cargo命令目录下，实际上并不方便想要探究substrate的开发者，因此本文将跳开脚本，把本身配置环境与编译的过程重新介绍。</p>
+<h2 id="二-环境配置"><a class="header" href="#二-环境配置">二 环境配置</a></h2>
+<p>以下过程实际和脚本 <code>https://getsubstrate.io/index.html</code>相同，因此若有疑问可参考脚本本身的内容。</p>
+<p>环境配置分为两个部分：</p>
+<ol>
+<li>依赖库</li>
+<li>rust编译链</li>
+</ol>
+<p>其他linux发行版，mac os可以对应进行参考</p>
+<h3 id="1-依赖库"><a class="header" href="#1-依赖库">1. 依赖库</a></h3>
+<pre><code class="language-bash"> apt install -y cmake pkg-config libssl-dev git gcc build-essential git clang libclang-dev
+</code></pre>
+<p>在依赖库中大部分都是正常的编译工具，这里重点介绍以下<code>libssl-dev</code>。这个库实际上就是提供ssl的支持，在substrate中用于 Libp2p 与 websocket 这两个库的编译依赖，提供ssl保护。因此对应与其他发行版（如centos，redhat等）就是提供类似<code>openssl</code>的编译依赖。</p>
+<p>在同一发行版的不同版本上编译后需要在另一个版本上运行时（例如在ubuntu 17.04上编译，把执行文件拷贝到ubuntu16.04上），尤其需要注意这个库（ssl）的动态链接依赖。例如在ubuntu 17.04默认的openssl库使用的是 <code>openssl 1.1</code> 以上的版本，而 ubuntu 16.04 使用的时 openssl1.0 版本。因此把ubuntu17.04编译的版本放到16.04上会出现动态链接库不匹配的问题。</p>
+<p>若需要在ubuntu 17.04及以上版本编译出能在16.04版本上运行的执行文件，可以在编译环境下装好执行环境对应的openssl版本，然后使用</p>
+<pre><code class="language-bash">export OPENSSL_LIB_DIR=&quot;&lt;you path&gt;&quot;
+export OPENSSL_INCLUDE_DIR=&quot;&lt;you path&gt;&quot;
+</code></pre>
+<p>导出这两个环境变量，再进行编译。</p>
+<p>ps：在脚本中对于arch系指定的openssl版本时 1.0 的，因为笔者不用arch系的linux，尚不可知为何parity团队要指定这个版本。若需要探究的话可参考到 rust-libp2p的相应需求。</p>
+<h3 id="rust-编译链"><a class="header" href="#rust-编译链">rust 编译链</a></h3>
+<p>rust的安装简单得多，首先按照rust官网装好rust环境，确保有<code>rustup</code>和<code>cargo</code>命令后：</p>
+<pre><code class="language-bash">rustup update nightly  # 安装 nightly 编译链
+rustup target add wasm32-unknown-unknown --toolchain nightly  # 对 nightly 编译链添加 wasm 编译target
+</code></pre>
+<p>这里说明：</p>
+<p>实际上自rust stable 1.38之后 wasm 的这个target就已经可以提供给stable了，但是由于substrate改变了其编译wasm的方式，是在substrate的代码中指定了使用nightly编译wasm，因此这里如果只给stable添加<code>wasm32-unknown-unknown</code>是没有用的，必须先提供nightly编译链，再对nightly添加wasm的target。</p>
+<p>在该版本的substrate中已经不需要在添加<code>wasm-gc</code>做wasm的压缩。（windows的还是看到了这个命令，笔者怀疑是substrate的文档还没有改）</p>
+<h2 id="三-编译"><a class="header" href="#三-编译">三 编译</a></h2>
+<p>首先讲substrate项目拉下来</p>
+<pre><code class="language-bash">git clone https://github.com/paritytech/substrate.git
+</code></pre>
+<p>参照之前笔者的文章，这里建议导出一个环境变量：</p>
+<pre><code class="language-bash">export WASM_BUILD_TYPE=release
+</code></pre>
+<p>在这个环境变量下编译出的wasm才是以release模式编译，否则可能影响出块。</p>
+<p>因此进入substrate目录后</p>
+<pre><code class="language-bash">cd substrate
+</code></pre>
+<p>编译可以采用</p>
+<pre><code class="language-bash">cargo build
+# 若刚才没有导出 WASM_BUILD_TYPE 可以在这里执行以下命令强制设定
+#  WASM_BUILD_TYPE=release cargo build
+</code></pre>
+<p>这里首先说明，在cargo下：</p>
+<pre><code class="language-bash">cargo run -- &lt;参数&gt;  # 注意这里有两个横杆 --
+# 等于
+cargo build &amp;&amp; ./target/debug/&lt;项目执行文件&gt; &lt;参数&gt;
+# 而 release编译
+cargo run --release -- &lt;参数&gt;
+# 等于
+cargo build --release &amp;&amp; ./target/release/&lt;执行文件&gt; &lt;参数&gt;
+</code></pre>
+<p>对于substrate而言，执行</p>
+<pre><code class="language-bash">cargo run -- --dev
+</code></pre>
+<p>等于</p>
+<pre><code class="language-bash">cargo build &amp;&amp; ./target/debug/substrate --dev
+</code></pre>
+<p>由于substrate项目编译后（<code>cargo build</code>）当前会在target目录下生成多个可执行文件，因此请依据自己当前的需求执行。</p>
+<h3 id="注意的点"><a class="header" href="#注意的点">注意的点：</a></h3>
+<ol>
+<li>
+<p>wasm是否以release编译</p>
+<p>查看 <code>target/&lt;debug/release&gt;/wbuild/node-runtime/node_runtime.compact.wasm</code>的大小，若其大小是1.3M左右，可确定是以release编译，若是8M以上，则一定是以debug编译，此时建议设置好相应环境变量重新编译。</p>
+</li>
+<li>
+<p>编译后的执行文件</p>
+<p>编译后产生的执行文件有4个</p>
+<ul>
+<li>substrate  # 即 substrate的node项目执行文件，源码位于<code>bin/node</code>，研究substrate的基础入口，cargo run 执行的文件即为该文件</li>
+<li>node-rpc-client # 与substrate node进行交互的rpc执行文件，源码位于<code>bin/node/rpc-client</code>下，注意这个和node交互，不是与node-template交互</li>
+<li>node-template  # 精简版的node，源码位于<code>bin/node-template</code>，与node相比去除了大部分runtime模块，可最为最精简链运行</li>
+<li>subkey # 用于生成一些公私钥的工具，源码位于<code>bin/substrate</code></li>
+</ul>
+</li>
+</ol>
+<p>对于substrate的研究，只需要关心node项目即可，不擅长js的，可用辅助使用node-rpc-client用来发交易。</p>
+<h2 id="其他"><a class="header" href="#其他">其他</a></h2>
+<p>在substrate的官方脚本中，后续操作还安装了<code>https://github.com/paritytech/substrate-up</code>这个项目，该项目是用来生成依托于substrate框架的链的一个模板生成工具。由于substrate更新很频繁，这个工具早已更不上变化，因此不建议安装。</p>
+<h2 id="总结"><a class="header" href="#总结">总结</a></h2>
+<p>由于substrate官方的安装脚本隐藏了很多细节，且没给予用户一些选择的权利，因此本文不建议使用脚本安装，而是梳理了当前substrate的环境配置与编译，并解释了各个步骤的含义。因此用户可根据本文的解释结合自己的环境情况进行substrate的编译环境配置。</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="index.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next" href="substrate_2.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="index.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next" href="substrate_2.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+        <!-- Livereload script (if served using the cli tool) -->
+        <script type="text/javascript">
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
+
+
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </body>
+</html>

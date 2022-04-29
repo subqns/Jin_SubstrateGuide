@@ -1,0 +1,256 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>项目结构 - Substrate Guide</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="index.html">README</a></li><li class="chapter-item expanded "><a href="substrate_1.html"><strong aria-hidden="true">1.</strong> 环境配置与编译</a></li><li class="chapter-item expanded "><a href="substrate_2.html"><strong aria-hidden="true">2.</strong> 运行与调试</a></li><li class="chapter-item expanded "><a href="substrate_3.html"><strong aria-hidden="true">3.</strong> 具备状态的链</a></li><li class="chapter-item expanded "><a href="substrate_4.html" class="active"><strong aria-hidden="true">4.</strong> 项目结构</a></li><li class="chapter-item expanded "><a href="substrate_5.html"><strong aria-hidden="true">5.</strong> 区块头</a></li><li class="chapter-item expanded "><a href="substrate_6.html"><strong aria-hidden="true">6.</strong> 交易体</a></li><li class="chapter-item expanded "><a href="substrate_7.html"><strong aria-hidden="true">7.</strong> Substrate的模型设计</a></li><li class="chapter-item expanded "><a href="substrate_8.html"><strong aria-hidden="true">8.</strong> Runtime概要</a></li><li class="chapter-item expanded "><a href="substrate_9.html"><strong aria-hidden="true">9.</strong> Runtime的wasm与native</a></li><li class="chapter-item expanded "><a href="substrate_10.html"><strong aria-hidden="true">10.</strong> Runtime的构成</a></li><li class="chapter-item expanded "><a href="substrate_11.html"><strong aria-hidden="true">11.</strong> 学习Runtime必备的技能</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Substrate Guide</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="substrate-入门---项目结构--四"><a class="header" href="#substrate-入门---项目结构--四">Substrate 入门 - 项目结构 -（四）</a></h1>
+<p>在开始讲解Substrate的内容之前，还需要补充一个<strong>当前</strong>Substrate的项目结构。之所以这里强调“当前”是因为Substrate从之前的结构到现在已经发生了巨大的变化，如果不重新再介绍以下，后续的文章介绍起来就会有一些麻烦。</p>
+<p>笔者在一年前已经写过一个Substrate的项目结构<a href="https://zhuanlan.zhihu.com/p/56414647">《Substrate 设计总览 （二）》</a>的介绍，但是截止目前项目的结构几乎已经全部变了。因此重新进行介绍。（在看本文前最好先了解了Substrate的设计总览：<a href="https://zhuanlan.zhihu.com/p/56383616">《Substrate 设计总览》</a>）</p>
+<p>本文所基于的Substrate提交为：<code>a98625501be68cc3084e666497c16b111741dded</code>，即2019年12月21日的提交。</p>
+<h2 id="core-primitives--client"><a class="header" href="#core-primitives--client"><code>core</code>-&gt;<code>primitives</code> + <code>client</code></a></h2>
+<p>以前的<code>core</code>目录包含了所有的链的功能模块的部分，也就是所谓的Substrate的框架主体内容。在现在的版本中，拆成了<code>primitives</code> + <code>client</code>两个部分。</p>
+<p>其中：</p>
+<ul>
+<li><code>primitives</code>：元语，赋予了新的含义，用于<strong>定义</strong>一条链中很多<strong>基础设置</strong>的模块。实际上这个归类也是比较笼统的，但是主要还是用来定义用的，举例来说：
+<ul>
+<li><code>primitives/core</code>中定义了密码学类型如<code>ed25519</code>，<code>sr25519</code>等，定了<code>hash</code>，定义了<code>H160</code>，<code>H256</code>，<code>H512</code>等长度类型，</li>
+<li><code>primitives/runtime</code>定义了“Runtime”中需要用到的基础类型，如区块头 <code>Header</code>，区块<code>Block</code>，交易体<code>extrinisic</code>，区块头附带的信息“digest”，“Runtime”编写过程中用到的一些基础工具，如错误处理<code>DispatchError</code>，兼容多种类型签名的<code>MultiSignature</code>，Runtime中的随机数，交易合法验证，offchain的一些类型定义等等</li>
+<li><code>primitives/consensus</code>Substrate提出的新共识的核心<code>aura</code>，&quot;babe&quot;，以及“pow”的一些类型定义，注意这里只是一些定义以及对于Runtime的api接口，实现在<code>client/consensus</code>对应的模块下。</li>
+<li><code>primitives/api</code>runtime的api的工具宏定义</li>
+<li><code>primitives/trie</code> 对 MPT 的包装，MPT见上文介绍，实现在<code>trie-db</code>这个库中</li>
+<li><code>primitives/std</code> 和 <code>primitives/io</code> 原来的<code>sr-std</code> 和<code>sr-io</code>，用于提供Runtime中的对于wasm编写的支持以及runtime访问trie的接口。</li>
+<li>等等内容</li>
+</ul>
+</li>
+</ul>
+<p>而对于另一个模块<code>client</code>而言：</p>
+<ul>
+<li><code>client</code>是对于很多模块的<strong>功能实现</strong>以及集成功能模块组件
+<ul>
+<li><code>client/api</code>就是对于runtime api 调用包装的实现</li>
+<li><code>client/consensus</code>是对共识模块的实现。</li>
+<li><code>client/network</code>是对网络p2p的实现，底层使用Libp2p</li>
+<li><code>client/state-db</code>是对每个块提交到MPT的过程的管理</li>
+<li><code>client/service</code>是对许多功能模块的集成，例如网络模块，交易池，rpc等等，service相当于启动了这些模块并持有这些模块的引用</li>
+<li><code>client/cli</code>是对命令行的解析并根据相应的参数配置service</li>
+<li>等等... 由于本系列主要是为了介绍使用substrate，而不是讲解substrate怎么实现，所有就不必说的很细致了。</li>
+</ul>
+</li>
+</ul>
+<p>所以在今后的文章中介绍<code>primitives</code>/<code>client</code> 即代表着这些是Substrate框架内的代码，若要修改，需要进行fork</p>
+<p>ps:（这是不严谨的说法，实际上也可以引用<code>primitives</code>，自己实现<code>client</code>，只所以这么说是因为<code>client</code>可以看做<code>Substrate</code>定义的基础结构的一种实现，当然可以独立进行另一种client的实现。但由于当前的client里面是一种实现，因此里面的模块都是互相关联的，很难只修改其中某个组件，如果需要沿用Substrate的实现但是需要修改其中的某些实现，那么只能fork修改了。）</p>
+<h2 id="srml---frame"><a class="header" href="#srml---frame"><code>srml</code> -&gt; <code>frame</code></a></h2>
+<p>参见笔者之前的《Substrate 设计总览》与《Substrate 设计总览 （二）》，应该知道了Runtime的概念，与Substrate中实现Runtime的模块srml（Substrate Runtime Module Library）。在新版中，<code>srml</code>命名为了<code>frame</code>。</p>
+<p>对于<code>frame</code>而言，模块之间没有很大的迁移，基本沿袭了原来的命名与结构，只不过新增了很多的runtime module 模块。</p>
+<p>如理解了这两篇文章的内容，那么应该可以理解<code>frame</code>中除了“system”之外，都是可以由开发者自由实现的，实际上使用Substrate链编写的应用链的核心部分就是开发自己的Runtime Module。编写自己的Runtime Module不会写的时候，就需要去模仿<code>frame</code>模块中这些模块的编写技巧。其中提供了很多最佳实现这类的东西。</p>
+<h2 id="node--node-template--subkey--其他---bin"><a class="header" href="#node--node-template--subkey--其他---bin"><code>node</code> + <code>node-template</code> + <code>subkey</code> + 其他 -&gt; <code>bin</code></a></h2>
+<p><strong>对于上文的 <code>primitive</code>，<code>client</code>或者再加上<code>frame</code>中的<code>system</code>共同构成了Substrate的框架</strong>，而对于新版本中的<code>bin</code>则是对Substrate框架的<strong>使用案例</strong>（一种实现），因此**<code>bin</code>中的内容就是Substrate的框架外**的部分。</p>
+<p>在新版本中把原来的node，node-template等全部移动到了bin中，代表这些模块是可以进行“可执行文件”的入口。因此调试也好，研究数据流流转也好，都是从这个入口开始。</p>
+<p>所以在今后的文章中，介绍<code>bin</code>中的代码，即代表着这是使用者可以自由进行定制的部分，可参考bin中的一些组件进行修改。而bin中的案例即是如何把runtime和service组合在一起的案例。</p>
+<p>对于本系列而言，只用参考node的实现就够了，因为它的实现是最全面的。</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="substrate_3.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next" href="substrate_5.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="substrate_3.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next" href="substrate_5.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+        <!-- Livereload script (if served using the cli tool) -->
+        <script type="text/javascript">
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
+
+
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </body>
+</html>
